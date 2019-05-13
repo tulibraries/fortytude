@@ -4,6 +4,7 @@ class BuildingsController < ApplicationController
   load_and_authorize_resource
   before_action :set_building, only: [:show]
   before_action :set_date, only: [:show]
+  respond_to :html, :json
 
   def index
     @buildings = Building.all
@@ -15,10 +16,10 @@ class BuildingsController < ApplicationController
 
   def show
     @todays_hours = LibraryHour.where(location_id: @building.hours, date: @today)
-    respond_to do |format|
-      format.html
-      format.json { render json: BuildingSerializer.new(@building) }
-    end
+    # respond_to do |format|
+    #   format.html
+    #   format.json { render json: BuildingSerializer.new(@building) }
+    # end
   end
 
   private
