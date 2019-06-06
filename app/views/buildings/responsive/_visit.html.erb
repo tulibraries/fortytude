@@ -28,12 +28,10 @@
       <div class="r-body d-none" id="hours-body">
       <div id="dateTime">
         <div id="date">
-          <%= @building.todays_date %>
+          <%= render_todays_date %>
         </div>
         <div id="time" style="line-height: 1.5rem;">
-          <% unless @building.hours.blank? %>
-            <div class="time"><%= @todays_hours.first.hours %></div>
-          <% end %>
+          <%= render_todays_hours(@building, @todays_hours) %>
           <%= @building.name %> 
         </div>
         </div>

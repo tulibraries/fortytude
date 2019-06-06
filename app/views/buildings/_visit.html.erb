@@ -25,12 +25,8 @@
       <div class="card-body">
       <div id="dateTime">
         <div id="date">
-          <%= @building.todays_date %>
-        <div id="time">
-          <% unless @building.hours.blank? %>
-            <%= @todays_hours.first.hours %>
-          <% end %>
-        </div>
+          <%= render_todays_date %>
+          <%= render_todays_hours(@building, @todays_hours) %>
         </div>
         <div id="allHours">
           <% unless @building.hours.blank? %>

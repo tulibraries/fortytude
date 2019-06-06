@@ -42,6 +42,18 @@ RSpec.describe BuildingsController, type: :controller do
     end
   end
 
+  context "hours" do
+    describe "Get #show" do
+      let(:building) { FactoryBot.create(:building, hours: "no such building") }
+
+      it "returns http success" do
+        get :show, params: { id: building.id }
+        expect(response).to have_http_status(:ok)
+        expect(response).to render_template(:show, id: building.id)
+      end
+    end
+  end
+
 
   describe "GET #show as JSON" do
     let(:building) { FactoryBot.create(:building, :with_image) }
