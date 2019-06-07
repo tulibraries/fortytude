@@ -63,7 +63,7 @@ Rails.application.routes.draw do
   resources :policies, only: [:index, :show]
   resources :events, only: [:index, :show], constraints: { id: /[0-9]+/ }, concerns: [:imageable]
   resources :exhibitions, only: [:index, :show], concerns: [:imageable]
-  resources :library_hours, only: [:index, :show], as: :hours, path: "/hours"
+  resources :library_hours, only: [:index], as: :hours, path: "/hours"
   resources :forms, only: [:new, :create]
   resources :finding_aids, only: [:index, :show]
   resources :pages, only: [:index, :show]

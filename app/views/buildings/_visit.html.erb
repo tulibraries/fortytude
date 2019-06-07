@@ -30,7 +30,7 @@
         </div>
         <div id="allHours">
           <% unless @building.hours.blank? %>
-            <%= link_to "See all hours", hour_path(@building.hours) %> >
+            <%= link_to "See all hours", hours_path(@building.hours) %> >
           <% end %>
         </div>
       </div>
