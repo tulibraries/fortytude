@@ -4,14 +4,19 @@ class FindingAid < ApplicationRecord
   include InputCleaner
   include Categorizable
 
-  paginates_per 15
-
-
   before_save :weed_nils
+  before_validation :sanitize_description
 
   has_paper_trail
+  paginates_per 15
 
-  before_validation :sanitize_description
+  scope :with_subject, ->(subjects) {
+    where(subject_query(subjects), subjects.map {|s| "%#{s}%" }) if subjects.present?
+  }
+
+  scope :in_collection, ->(collection_id) {
+    includes(:collections).where(:collections => {'id' => collection_id}) if collection_id.present?
+  }
 
   serialize :subject
 
@@ -26,4 +31,9 @@ class FindingAid < ApplicationRecord
     def weed_nils
       subject.reject! { |s| s == "" }
     end
+
+    def self.subject_query(subjects)
+      subjects.size.times.map { |s| "subject LIKE (?)"}.join(" AND ")
+    end
+
 end

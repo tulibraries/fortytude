@@ -7,7 +7,7 @@ class FindingAidsController < ApplicationController
   before_action :return_aids, only: [:index]
 
   def index
-    @finding_aids = FindingAid.all
+    #@finding_aids = FindingAid.all
     @catalog_search = "#{Rails.configuration.librarysearch_finding_aids_url}"
 
     respond_to do |format|
@@ -24,22 +24,30 @@ class FindingAidsController < ApplicationController
   end
 
   def return_aids
-    all_aids = FindingAid.group(:id).order(:name)
+    subjects = (params['subject'] || "").split(',')
+    collection = params['collection']
+    @finding_aids = FindingAid
+      .includes(:collections)
+      .with_subject(subjects)
+      .in_collection(collection)
+      .order(:name)
 
-    if params.has_key?("collection")
-      collections = collections_list(all_aids)
-    end
-    if params.has_key?("subject")
-      subjects = subjects_list(all_aids)
-    end
 
-    arrays = [Array(collections), Array(subjects)].reject(&:empty?).reduce(:&) || []
 
-    filtered_aids = arrays.blank? ? all_aids : arrays
+    # if params.has_key?("collection")
+    #   collections = collections_list(all_aids)
+    # end
+    # if params.has_key?("subject")
+    #   subjects = subjects_list(all_aids)
+    # end
+    #
+    # arrays = [Array(collections), Array(subjects)].reject(&:empty?).reduce(:&) || []
+    #
+    # filtered_aids = arrays.blank? ? all_aids : arrays
 
-    get_filters(filtered_aids)
-    aids = FindingAid.where(id: filtered_aids.map(&:id)).order(:name)
-    @aids_list = aids.page params[:page]
+    get_filters(@finding_aids)
+    #aids = FindingAid.where(id: filtered_aids.map(&:id)).order(:name)
+    @aids_list = @finding_aids.page params[:page]
   end
 
   def get_filters(aids)
