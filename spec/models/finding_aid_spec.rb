@@ -28,8 +28,8 @@ RSpec.describe FindingAid, type: :model do
   describe "Scope" do
     describe ":with_subject" do
       before do
-        @f1 = FactoryBot.create(:finding_aid, subject: ['sub1'])
-        @f2 = FactoryBot.create(:finding_aid, subject: ['sub1', 'sub2'])
+        @f1 = FactoryBot.create(:finding_aid, subject: ["sub1"])
+        @f2 = FactoryBot.create(:finding_aid, subject: ["sub1", "sub2"])
       end
 
       it "returns all finding aids when subejcts is empty" do
@@ -37,16 +37,16 @@ RSpec.describe FindingAid, type: :model do
       end
 
       it "returns all finding aids with one subject" do
-        expect(FindingAid.with_subject(['sub1'])).to include(@f1, @f2)
+        expect(FindingAid.with_subject(["sub1"])).to include(@f1, @f2)
       end
 
       it "returns only the finding aid with sub2" do
-        expect(FindingAid.with_subject(['sub2'])).to include(@f2)
-        expect(FindingAid.with_subject(['sub2'])).not_to include(@f1)
+        expect(FindingAid.with_subject(["sub2"])).to include(@f2)
+        expect(FindingAid.with_subject(["sub2"])).not_to include(@f1)
       end
 
       it "returns no finding aids with a unused subject" do
-        expect(FindingAid.with_subject(['sub3'])).to eq []
+        expect(FindingAid.with_subject(["sub3"])).to eq []
       end
 
     end

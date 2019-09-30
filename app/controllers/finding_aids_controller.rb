@@ -24,8 +24,8 @@ class FindingAidsController < ApplicationController
   end
 
   def return_aids
-    subjects = (params['subject'] || "").split(',')
-    collection = params['collection']
+    subjects = (params["subject"] || "").split(",")
+    collection = params["collection"]
     @finding_aids = FindingAid
       .includes(:collections)
       .with_subject(subjects)

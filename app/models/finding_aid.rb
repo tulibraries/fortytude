@@ -11,11 +11,11 @@ class FindingAid < ApplicationRecord
   paginates_per 15
 
   scope :with_subject, ->(subjects) {
-    where(subject_query(subjects), subjects.map {|s| "%#{s}%" }) if subjects.present?
+    where(subject_query(subjects), *(subjects.map { |s| "%#{s}%" })) if subjects.present?
   }
 
   scope :in_collection, ->(collection_id) {
-    includes(:collections).where(:collections => {'id' => collection_id}) if collection_id.present?
+    includes(:collections).where(collections: { "id" => collection_id }) if collection_id.present?
   }
 
   serialize :subject
@@ -33,7 +33,6 @@ class FindingAid < ApplicationRecord
     end
 
     def self.subject_query(subjects)
-      subjects.size.times.map { |s| "subject LIKE (?)"}.join(" AND ")
+      subjects.size.times.map { |s| "finding_aids.subject LIKE ?" }.join(" AND ")
     end
-
 end
