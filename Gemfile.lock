@@ -210,7 +210,7 @@ GEM
       concurrent-ruby (~> 1.0)
     hashdiff (1.0.0)
     hashie (3.6.0)
-    honeybadger (4.5.1)
+    honeybadger (4.5.2)
     httparty (0.17.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
@@ -310,7 +310,7 @@ GEM
       mutant (~> 0.8.24)
       rspec-core (>= 3.4.0, < 4.0.0)
     nenv (0.3.0)
-    nio4r (2.5.1)
+    nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
@@ -354,7 +354,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.1)
-    puma (4.2.0)
+    puma (4.2.1)
       nio4r (~> 2.0)
     rack (2.0.7)
     rack-test (1.1.0)
@@ -482,6 +482,8 @@ GEM
       json (>= 1.8, < 3)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.2)
+    sitemap_generator (6.0.2)
+      builder (~> 3.0)
     skylight (4.1.2)
       skylight-core (= 4.1.2)
     skylight-core (4.1.2)
@@ -603,6 +605,7 @@ DEPENDENCIES
   selenium-webdriver
   simple_form
   simplecov
+  sitemap_generator
   skylight
   spring
   spring-watcher-listen (~> 2.0.0)
