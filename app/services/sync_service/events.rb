@@ -119,8 +119,7 @@ class SyncService::Events
     address = event.fetch("Address", nil)
 
     building = FuzzyFind::Building.find(
-      location.to_s,
-        addl_attribute: { address1: address.to_s }
+      location.to_s
         )
 
     if building
