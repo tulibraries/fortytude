@@ -48,45 +48,24 @@ class EventDashboard < BaseDashboard
   # By default, it's limited to four items to reduce clutter on index pages.
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
-    :title,
-    :event_type,
     :start_time,
-    :end_time,
+    :title,
+    :event_type
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
   # an array of attributes that will be displayed on the model's show page.
   SHOW_PAGE_ATTRIBUTES = [
-    :id,
+    :image,
     :title,
     :description,
     :event_type,
     :tags,
-    :start_time,
-    :end_time,
-    :all_day,
-    :image,
-    :alt_text,
     :building,
     :space,
-    :external_building,
-    :external_space,
-    :external_address,
-    :external_city,
-    :external_state,
-    :external_zip,
-    :person,
-    :external_contact_name,
-    :external_contact_email,
-    :external_contact_phone,
-    :cancelled,
-    :registration_status,
-    :registration_link,
-    :content_hash,
-    :ensemble_identifier,
-    :categories,
-    :created_at,
-    :updated_at,
+    :start_time,
+    :end_time,
+    :categories
   ].freeze
 
   # FORM_ATTRIBUTES

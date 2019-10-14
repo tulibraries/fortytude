@@ -21,7 +21,7 @@ module Admin
     def default_params
       resource_params = params.fetch(resource_name, {})
       order = resource_params.fetch(:order, "start_time")
-      direction = resource_params.fetch(:direction, "asc")
+      direction = resource_params.fetch(:direction, "desc")
       params[resource_name] = resource_params.merge(order: order, direction: direction)
     end
   end
