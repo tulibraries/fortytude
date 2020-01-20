@@ -3,11 +3,15 @@
 class Webpage < ApplicationRecord
   include Accountable
   include Categorizable
+  include Draftable
   include SetDates
   include Validators
   include SchemaDotOrgable
 
   has_one_attached :document, dependent: :destroy
+
+  has_draft :description
+
   # validates :document, content_type: ["application/pdf"]
   validates :title, :description, presence: true
 
