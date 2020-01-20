@@ -5,6 +5,7 @@ class Space < ApplicationRecord
 
   include Accountable
   include Categorizable
+  include Draftable
   include HasHours
   include HasPolicies
   include Imageable
@@ -36,6 +37,8 @@ class Space < ApplicationRecord
 
   has_many :service_space, dependent: :destroy
   has_many :related_services, through: :service_space, source: :service
+
+  has_draft :description
 
   def schema_dot_org_type
     "Place"
