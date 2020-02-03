@@ -5,17 +5,18 @@ require "rails_helper"
 RSpec.feature "Dashboard::CollectionDrafts", type: :feature do
   context "New Collection Administrate Page" do
     scenario "Create new item " do
-      Rails.configuration.draftable = true
+      Flipper.enable(:draftable)
       account = FactoryBot.create(:account, admin: true)
       login_as(account, scope: :account)
       visit("/admin/collections/new")
       expect(page).to_not have_xpath("//textarea[@id=\"collection_draft_description\"]")
+      account.destroy
     end
   end
 
   context "Show draftable if draftable feature flag set" do
     before(:all) do
-      Rails.configuration.draftable = true
+      Flipper.enable(:draftable)
       @account = FactoryBot.create(:account, admin: true)
       @collection = FactoryBot.create(:collection)
     end
@@ -32,9 +33,9 @@ RSpec.feature "Dashboard::CollectionDrafts", type: :feature do
     end
   end
 
-  context "Show draftable if draftable feature flag clear" do
+  context "Don't show draftable if draftable feature flag clear" do
     before(:all) do
-      Rails.configuration.draftable = false
+      Flipper.disable(:draftable)
       @account = FactoryBot.create(:account, admin: true)
       @collection = FactoryBot.create(:collection)
     end
@@ -45,15 +46,17 @@ RSpec.feature "Dashboard::CollectionDrafts", type: :feature do
     end
 
     scenario "disable draftable" do
-      login_as(@account, scope: :account)
-      visit("/admin/collections/#{@collection.id}/edit")
-      expect(page).to_not have_xpath("//textarea[@id=\"collection_draft_description\"]")
+      Capybara.using_session("undraftable") do
+        login_as(@account, scope: :account)
+        visit("/admin/collections/#{@collection.id}/edit")
+        expect(page).to_not have_xpath("//textarea[@id=\"collection_draft_description\"]")
+      end
     end
   end
 
   context "Visit Collection Administrate Page" do
     before(:all) do
-      Rails.configuration.draftable = true
+      Flipper.enable(:draftable)
       @account = FactoryBot.create(:account, admin: true)
       @collection = FactoryBot.create(:collection)
       login_as(@account, scope: :account)

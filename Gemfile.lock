@@ -170,6 +170,7 @@ GEM
       sax-machine (>= 1.0)
     ffaker (2.13.0)
     ffi (1.11.3)
+    flipper (0.17.2)
     font-awesome-rails (4.7.0.5)
       railties (>= 3.2, < 6.1)
     formatador (0.2.5)
@@ -574,6 +575,7 @@ DEPENDENCIES
   faker
   fast_jsonapi (~> 1.0)
   feedjira
+  flipper
   font-awesome-rails
   fuzzy_match
   google-analytics-rails (= 1.1.1)
