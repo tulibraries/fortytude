@@ -27,6 +27,7 @@ class BuildingDashboard < BaseDashboard
     categories: Field::HasMany,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
+    published: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -38,6 +39,7 @@ class BuildingDashboard < BaseDashboard
     :id,
     :name,
     :updated_at,
+    :published,
     :categories,
     :slug,
   ].freeze
@@ -55,7 +57,8 @@ class BuildingDashboard < BaseDashboard
     :phone_number,
     :email,
     :policies,
-    :categories
+    :categories,
+    :published
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -77,7 +80,8 @@ class BuildingDashboard < BaseDashboard
     :hours,
     :email,
     :policies,
-    :categories
+    :categories,
+    :published
   ].freeze
 
   # Overwrite this method to customize how buildings are displayed

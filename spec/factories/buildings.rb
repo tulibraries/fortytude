@@ -20,6 +20,7 @@ FactoryBot.define do
     #     building.image.attach(file)
     #   end
     # end
+    published { true }
 
     factory :building_with_people do
       after(:create) do |building|
