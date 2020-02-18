@@ -20,6 +20,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     long_description: DescriptionField,
     get_help: DescriptionField,
     accounts: Field::HasMany.with_options(admin_only: true),
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -33,6 +34,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     :name,
     :id,
     :description,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -49,6 +51,7 @@ class CategoryDashboard < Administrate::BaseDashboard
     :accounts,
     :created_at,
     :updated_at,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -63,7 +66,8 @@ class CategoryDashboard < Administrate::BaseDashboard
     :description,
     :long_description,
     :get_help,
-    :accounts
+    :accounts,
+    :published,
   ].freeze
 
   def display_resource(category)

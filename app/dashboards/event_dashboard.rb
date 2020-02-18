@@ -39,6 +39,7 @@ class EventDashboard < BaseDashboard
     ensemble_identifier: Field::String,
     categories: Field::HasMany,
     guid: Field::String,
+    guid: Field::String,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze

@@ -22,6 +22,7 @@ class CollectionDashboard < Administrate::BaseDashboard
     accounts: Field::HasMany.with_options(admin_only: true),
     external_link: Field::BelongsTo.with_options(order: "title"),
     slug: Field::String,
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -34,6 +35,7 @@ class CollectionDashboard < Administrate::BaseDashboard
   COLLECTION_ATTRIBUTES = [
     :name,
     :space,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -46,7 +48,8 @@ class CollectionDashboard < Administrate::BaseDashboard
     :space,
     :categories,
     :accounts,
-    :external_link
+    :external_link,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -62,6 +65,7 @@ class CollectionDashboard < Administrate::BaseDashboard
     :space,
     :external_link,
     :accounts,
+    :published,
   ].freeze
 
   # Overwrite this method to customize how collections are displayed

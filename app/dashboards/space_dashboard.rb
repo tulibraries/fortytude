@@ -28,6 +28,7 @@ class SpaceDashboard < BaseDashboard
     updated_at: Field::DateTime,
     ancestry: Field::String,
     categories: Field::HasMany,
+    published: Field::Boolean,
     accounts: Field::HasMany.with_options(admin_only: true),
   }.freeze
 
@@ -40,6 +41,7 @@ class SpaceDashboard < BaseDashboard
     :name,
     :building,
     :phone_number,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -54,7 +56,8 @@ class SpaceDashboard < BaseDashboard
     :email,
     :policies,
     :categories,
-    :accounts
+    :accounts,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -72,7 +75,8 @@ class SpaceDashboard < BaseDashboard
     :phone_number,
     :policies,
     :categories,
-    :accounts
+    :accounts,
+    :published,
   ].freeze
 
   # Overwrite this method to customize how spaces are displayed

@@ -25,9 +25,9 @@ class BuildingDashboard < BaseDashboard
     policies: Field::HasMany,
     external_link: Field::BelongsTo.with_options(order: "title"),
     categories: Field::HasMany,
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
-    published: Field::Boolean
   }.freeze
 
   # COLLECTION_ATTRIBUTES
@@ -39,9 +39,9 @@ class BuildingDashboard < BaseDashboard
     :id,
     :name,
     :updated_at,
-    :published,
     :categories,
     :slug,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -58,7 +58,7 @@ class BuildingDashboard < BaseDashboard
     :email,
     :policies,
     :categories,
-    :published
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -81,7 +81,7 @@ class BuildingDashboard < BaseDashboard
     :email,
     :policies,
     :categories,
-    :published
+    :published,
   ].freeze
 
   # Overwrite this method to customize how buildings are displayed

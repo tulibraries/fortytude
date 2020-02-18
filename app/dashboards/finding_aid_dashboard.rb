@@ -26,6 +26,7 @@ class FindingAidDashboard < Administrate::BaseDashboard
       class_name: "Person"
     ),
     categories: Field::HasMany,
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -53,6 +54,7 @@ class FindingAidDashboard < Administrate::BaseDashboard
     :person,
     :categories,
     :updated_at,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -67,7 +69,8 @@ class FindingAidDashboard < Administrate::BaseDashboard
     :subject,
     :content_link,
     :person,
-    :categories
+    :categories,
+    :published,
   ].freeze
 
   # Overwrite this method to customize how finding aids are displayed

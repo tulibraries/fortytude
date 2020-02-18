@@ -26,6 +26,7 @@ class WebpageDashboard < Administrate::BaseDashboard
       order: "name",
       class_name: "FileUpload"
     ),
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -37,7 +38,8 @@ class WebpageDashboard < Administrate::BaseDashboard
   # Feel free to add, remove, or rearrange items.
   COLLECTION_ATTRIBUTES = [
     :title,
-    :slug
+    :slug,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -46,7 +48,8 @@ class WebpageDashboard < Administrate::BaseDashboard
     :title,
     :categories,
     :accounts,
-    :file_uploads
+    :file_uploads,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -60,7 +63,8 @@ class WebpageDashboard < Administrate::BaseDashboard
     :categories,
     :accounts,
     :layout,
-    :file_uploads
+    :file_uploads,
+    :published,
   ].freeze
 
   # Overwrite this method to customize how pages are displayed

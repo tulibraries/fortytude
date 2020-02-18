@@ -22,6 +22,7 @@ class ServiceDashboard < Administrate::BaseDashboard
     hours: HoursField.with_options(admin_only: true),
     categories: Field::HasMany,
     accounts: Field::HasMany.with_options(admin_only: true),
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -36,7 +37,8 @@ class ServiceDashboard < Administrate::BaseDashboard
     :title,
     :categories,
     :accounts,
-    :updated_at
+    :updated_at,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -50,6 +52,7 @@ class ServiceDashboard < Administrate::BaseDashboard
     :accounts,
     :created_at,
     :updated_at,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -64,7 +67,8 @@ class ServiceDashboard < Administrate::BaseDashboard
     :intended_audience,
     :hours,
     :categories,
-    :accounts
+    :accounts,
+    :published,
   ].freeze
 
   def display_resource(service)

@@ -18,6 +18,7 @@ class PolicyDashboard < Administrate::BaseDashboard
     expiration_date: Field::DateTime,
     categories: Field::HasMany,
     accounts: Field::HasMany.with_options(admin_only: true),
+    published: Field::Boolean,
     created_at: Field::DateTime,
     updated_at: Field::DateTime,
   }.freeze
@@ -32,6 +33,7 @@ class PolicyDashboard < Administrate::BaseDashboard
     :name,
     :categories,
     :effective_date,
+    :published,
   ].freeze
 
   # SHOW_PAGE_ATTRIBUTES
@@ -46,6 +48,7 @@ class PolicyDashboard < Administrate::BaseDashboard
     :accounts,
     :created_at,
     :updated_at,
+    :published,
   ].freeze
 
   # FORM_ATTRIBUTES
@@ -58,7 +61,8 @@ class PolicyDashboard < Administrate::BaseDashboard
     :effective_date,
     :expiration_date,
     :categories,
-    :accounts
+    :accounts,
+    :published,
   ].freeze
 
   def display_resource(policy)
